@@ -1,10 +1,10 @@
 export * from './utils'
 
-import zhbButton from './themeButton/index'
+import formLinkage from './formLinkage/index'
 // 以数组的结构保存组件，便于遍历
-const components = [zhbButton]
+const components = [formLinkage]
 // 用于按需导入
-export { zhbButton }
+export { formLinkage }
 // 定义 install 方法
 const install = function (Vue: any) {
   if ((install as any).installed) return
