@@ -1,4 +1,4 @@
-export * from './utils'
+export * from './formLinkage/utils'
 
 import formLinkage from './formLinkage/index'
 // 以数组的结构保存组件，便于遍历

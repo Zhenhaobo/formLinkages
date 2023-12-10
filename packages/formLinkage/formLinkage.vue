@@ -18,9 +18,8 @@
 <script lang="ts" setup>
 import { reactive, computed, ref } from 'vue';
 import { Form, FormItem, Button, Input } from 'ant-design-vue';
-import { formItem } from '@/formItem';
-import { computedLinkage } from '@/utils';
-console.log("fromItem: ", formItem);
+import { formItem } from './formItem';
+import { computedLinkage } from './utils';
 interface FormState {
   form1: string;
   password: string;
@@ -35,7 +34,8 @@ interface FormItemDataProps {
   formItemProps: object;
 }
 interface Props {
-  formItemData: FormItemDataProps[]
+  formItemData: FormItemDataProps[],
+  linkages: any,
 }
 const props = defineProps<Props>();
 console.log("props: ", props);
@@ -44,20 +44,16 @@ const { formItemData, linkages } = props;
 
 
 const formState = reactive<Record<string, string>>(formItemData?.reduce((pre, cur) => {
-  const { key, defaultValue = 1 } = cur;
+  const { key, defaultValue = '' } = cur;
   pre[key] = defaultValue;
   return pre;
 }, {}))
 
-console.log('forms1', formState);
 
-const formLinkage = computed(() => {
-  console.log('computedLinkage',computedLinkage(formState, linkages));
-  
-  return computedLinkage(formState, linkages)
-})
+
+const formLinkage = computed(() => computedLinkage(formState, linkages))
 const onFinish = (values: any) => {
-  console.log();
+
   console.log('Success:', values);
 };
 

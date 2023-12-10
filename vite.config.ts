@@ -26,8 +26,8 @@ export default defineConfig({
     },
     lib: {
       entry: 'packages/index.ts',
-      name: 'zhb_test',
-      fileName: (format) => `zhb_test.${format}.js`
+      name: 'formLinkage',
+      fileName: (format) => `formLinkage.${format}.js`
     }
   }
 })

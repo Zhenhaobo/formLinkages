@@ -8,5 +8,5 @@
       "path": "./tsconfig.app.json"
     }
   ],
-  "include": ["packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.tsx", "packages/**/*.vue", "*.d.ts"]
+  "include": ["packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.tsx", "packages/**/*.vue", "*.d.ts", "examples/*"]
 }

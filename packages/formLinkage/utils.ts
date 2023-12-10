@@ -19,30 +19,30 @@ const computedConditon = (conditions: ConditionsProps[][], formState:Record<stri
         if (Array.isArray(condition)) {
             return condition.every((it) => {
                 const { key, rule, value } = it;
-                switch (rule) {
-                    case 'eq':
-                        return formState[key] === value
-                    case 'neq':
-                        return formState[key] !== value
-                    case 'gt':
-                        return formState[key] > value
-                    case 'lt':
-                        return formState[key] < value
-                    case 'gte':
-                        return formState[key] >= value
-                    case 'lte':
-                        return formState[key] <= value
-                    default:
-                        return false
-                }
+                    switch (rule) {
+                        case 'eq':
+                            return  formState[key] === value
+                        case 'neq':
+                            return formState[key] !== value
+                        case 'gt':
+                            return formState[key] > value
+                        case 'lt':
+                            return formState[key] < value
+                        case 'gte':
+                            return formState[key] >= value
+                        case 'lte':
+                            return formState[key] <= value
+                        default:
+                            return false
+                    }
             })
         }
         return false
     })
 }
-export const computedLinkage = (formState: Record<string, any>, linkage: LinkageProps[]) => {
+export const computedLinkage = (formState: Record<string, any>, linkages: LinkageProps[]) => {
     const formLinkage: Record<string, boolean> = {};
-    Array.isArray(linkage) && linkage.forEach(item => {
+    Array.isArray(linkages) && linkages.forEach(item => {
         const { conditions, result } = item;
         if (Array.isArray(conditions)) {
             const bool = computedConditon(conditions, formState)
@@ -53,6 +53,5 @@ export const computedLinkage = (formState: Record<string, any>, linkage: Linkage
             }
         }
     })
-
     return formLinkage;
 }

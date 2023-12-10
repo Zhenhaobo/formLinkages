@@ -3,8 +3,8 @@
   "version": "0.0.1-beta.0",
   "private": false,
   "type": "module",
-  "main": "dist/zhb_test.umd.js",
-  "module": "dist/zhb_test.es.js",
+  "main": "dist/formLinkage.umd.js",
+  "module": "dist/formLinkage.es.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vite",

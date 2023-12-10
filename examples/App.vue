@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import formLinkage from '@/components/formLinkage.vue';
 import { Button, FormItem } from 'ant-design-vue';
-
+import { computedLinkage } from '../packages';
 
 const formItemData = [
   {
@@ -47,7 +46,7 @@ const formItemData = [
 ];
 const linkages = [
 {
-  conditons: [
+  conditions: [
     [
       {
         key: 'form1',
@@ -59,6 +58,10 @@ const linkages = [
   result: [
     {
       key: 'form2',
+      value: 'hidden'
+    },
+    {
+      key: 'form3',
       value: 'hidden'
     }
   ]
