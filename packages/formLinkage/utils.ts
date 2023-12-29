@@ -1,18 +1,25 @@
 
 export interface LinkageProps {
-    conditions: ConditionsProps[][];
-    result: ResultProps[]
+    conditions: Array<Array<ConditionsProps>>;
+    result: string[]
 }
 
+export enum ConditionOperator {
+    GT = 'gt', // 大于
+    GTE = 'gte', // 大于等于
+    LT = 'lt', // 小于
+    LTE = 'lte', // 小于等于
+    EQ = 'eq', // 等于
+    NEQ = 'neq', // 不等于
+    INCLUDE = 'include', // 包含
+    EXCLUDE = 'exclude', // 不包含
+  }
+  
 export interface ConditionsProps {
     key: string;
-    rule: string;
+    rule: ConditionOperator;
     value: string;
 }[]
-export interface ResultProps {
-    key: string;
-    value: 'hidden' | string;
-}
 
 const computedConditon = (conditions: ConditionsProps[][], formState:Record<string, any>) => {
     return conditions.some((condition) => {
@@ -40,6 +47,13 @@ const computedConditon = (conditions: ConditionsProps[][], formState:Record<stri
         return false
     })
 }
+
+/**
+ * 
+ * @param formState form表单的响应式values
+ * @param linkages  显隐条件判定
+ * @returns 
+ */
 export const computedLinkage = (formState: Record<string, any>, linkages: LinkageProps[]) => {
     const formLinkage: Record<string, boolean> = {};
     Array.isArray(linkages) && linkages.forEach(item => {
@@ -47,8 +61,8 @@ export const computedLinkage = (formState: Record<string, any>, linkages: Linkag
         if (Array.isArray(conditions)) {
             const bool = computedConditon(conditions, formState)
             if (bool) {
-                Array.isArray(result) && result?.forEach((res) => {
-                    formLinkage[res.key] = true
+                Array.isArray(result) && result?.forEach((key) => {
+                    formLinkage[key] = true
                 })
             }
         }

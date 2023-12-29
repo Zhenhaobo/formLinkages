@@ -1,12 +1,10 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
-    }
-  ],
+  "compilerOptions": {
+    "declaration": true,
+    "target": "ES6", // 目标语言的版本
+    "module": "CommonJS", // 生成代码的模板标准
+    "outDir": "./dist"
+  },
+  "declaration": true,
   "include": ["packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.tsx", "packages/**/*.vue", "*.d.ts", "examples/*"]
 }

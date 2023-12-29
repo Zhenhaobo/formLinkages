@@ -1,10 +1,13 @@
 {
   "name": "formlinkage",
-  "version": "0.0.1-beta.0",
+  "version": "0.0.1",
   "private": false,
   "type": "module",
   "main": "dist/formLinkage.umd.js",
   "module": "dist/formLinkage.es.js",
+  "files": [
+    "dist/*"
+  ],
   "types": "dist/index.d.ts",
   "scripts": {
     "dev": "vite",

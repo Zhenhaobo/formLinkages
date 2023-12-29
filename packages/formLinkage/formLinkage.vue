@@ -5,37 +5,27 @@
         <component :is="formItem[item.comp]" v-model:value="formState[item.key]" />
       </FormItem>
     </template>
-
-    <!-- <FormItem label="sAdas" name="rtyrt">
-      <Input v-model:value="formState1.form1"></Input>
-    </FormItem> -->
-    <FormItem :wrapper-col="{ offset: 8, span: 16 }">
-      <Button type="primary" @click="handel">子组件按钮</Button>
-    </FormItem>
     <slot></slot>
   </Form>
 </template>
 <script lang="ts" setup>
-import { reactive, computed, ref } from 'vue';
-import { Form, FormItem, Button, Input } from 'ant-design-vue';
+import { reactive, computed } from 'vue';
+import { Form, FormItem } from 'ant-design-vue';
 import { formItem } from './formItem';
 import { computedLinkage } from './utils';
-interface FormState {
-  form1: string;
-  password: string;
-}
-interface FormItemDataProps {
+import type { LinkageProps } from './utils';
+export interface FormItemDataProps {
   comp: string;
   label: string;
   key: string;
-  defaultValue: string;
-  componentName: string;
-  componentProps: object;
-  formItemProps: object;
+  defaultValue?: string;
+  componentName?: string;
+  componentProps?: object;
+  formItemProps?: object;
 }
 interface Props {
   formItemData: FormItemDataProps[],
-  linkages: any,
+  linkages: LinkageProps[],
 }
 const props = defineProps<Props>();
 console.log("props: ", props);
