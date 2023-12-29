@@ -2,45 +2,59 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+## Installing
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
+### Package manager
+Using npm:
 ```sh
-pnpm install
+npm install formlinkage
 ```
 
-### Compile and Hot-Reload for Development
-
+Using pnpm:
 ```sh
-pnpm dev
+pnpm install formlinkage
 ```
 
-### Type-Check, Compile and Minify for Production
-
+Using yarn:
 ```sh
-pnpm build
+yarn add formlinkage
 ```
 
-### Lint with [ESLint](https://eslint.org/)
-
+## Example
 ```sh
-pnpm lint
+js: 
+import { reactive, computed } from 'vue';
+import { computedLinkage } from 'formlinkage';
+const form = reactive({
+  name: '',
+  post: '',
+  isRead: false,
+});
+
+const linkages = [
+  {
+    conditions: [
+      [
+        {
+          key: 'name',
+          rule: 'eq',
+          value: '123'
+        }
+      ]
+    ],
+    result: ['post']
+  }
+]
+const linkageForm = computed(()=> computedLinkage(form, linkages))
+
+template: 
+    <a-form :model="form" :style="{ width: '600px' }">
+      <a-form-item field="name" tooltip="Please enter username" label="Username">
+        <a-input v-model="form.name" placeholder="please enter your username..." />
+      </a-form-item>
+      <a-form-item v-show="!linkageForm['post']" field="post" label="Post">
+        <a-input v-model="form.post" placeholder="please enter your post..." />
+      </a-form-item>
+    </a-form>
 ```
+
